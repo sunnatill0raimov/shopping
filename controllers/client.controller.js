@@ -1,7 +1,7 @@
 import pool from '../config/connection.js';
 
 
-
+// get clientlar
 export const getclient= async (req, res) => {
 	try {
 		const result = await pool.query(`SELECT * FROM client`)
