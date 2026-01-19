@@ -2,7 +2,7 @@ import express from 'express'
 import pool from './config/connection.js'
 import cors from 'cors'
 import clientProductRounter from './router/client_product.route.js'
-import adminRouter from './router/admin.router.js'
+import adminRouter from './router/admin.route.js'
 
 const app = express()
 app.use(express.json())
