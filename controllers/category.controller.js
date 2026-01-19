@@ -1,0 +1,64 @@
+import pool from '../config/connection.js';
+
+export const getAllCategory = async (req, res) => {
+	try {
+		const clientProduct = await pool.query(`SELECT * FROM category`)
+		res.send(clientProduct.rows)
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message })
+	}
+}
+
+export const createCategory = async (req, res) => {
+	try {
+		const { category_type } = req.body
+		const newCategory = await pool.query(
+			`INSERT INTO category (category_type)
+             VALUES ($1)
+        `,
+			[category_type],
+		)
+		res.status(201).json({message: "Muvaffaqiyatli yaratildi" , newCategory: newCategory.rows[0]})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message })
+	}
+}
+
+export const deleteCategory = async (req, res) => {
+	try {
+		const { id } = req.params
+		const clientProduct = await pool.query(
+			'DELETE FROM category WHERE id = $1 RETURNING *;',
+			[id],
+		)
+		res.status(200).json({
+			message: "Muvaffaqiyatli o'chirildi",
+			removedClientProduct: clientProduct.rows[0],
+		})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message })
+	}
+}
+
+export const updateCategory = async (req, res) => {
+	try {
+		const { id } = req.params
+		const { category_type } = req.body
+
+		const clientProduct = await pool.query(
+			'UPDATE category SET category = $1 WHERE id = $4 RETURNING *;',
+			[date, client_id, product_id, id],
+		)
+
+		res.status(201).json({
+			message: 'Muvaffaqiyatli yangilandi',
+			clientProduct: clientProduct.rows[0],
+		})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message })
+	}
+} 						
