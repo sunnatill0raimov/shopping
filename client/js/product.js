@@ -1,5 +1,6 @@
 const productSection = DB_URL => {
 	const productContainer = document.getElementById('productContainer')
+	const productForm = document.getElementById('productForm')
 
 	const fetchProduct = async () => {
 		const res = await fetch(`${DB_URL}/product`)
@@ -28,6 +29,7 @@ const productSection = DB_URL => {
 				`
 		})
 	}
+
 }
 
 export default productSection
