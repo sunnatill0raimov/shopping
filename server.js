@@ -10,7 +10,7 @@ app.use(cors())
 
 const PORT = process.env.PORT || 3000
 
-// Client and Products
+// Client and Productssss
 app.use('/client', clientRounter)
 app.use('/shopping', clientProductRounter)
 
