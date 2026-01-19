@@ -10,7 +10,7 @@ app.use(cors())
 const PORT = process.env.PORT || 3000
 
 // Client and Products
-app.use('/client-product', clientProductRounter)
+app.use('/shopping', clientProductRounter)
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`)

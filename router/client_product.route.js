@@ -1,4 +1,3 @@
-import pool from '../config/connection.js';
 import express from 'express'
 import { createClientProduct, deleteClientProduct, getAllClientProdut, updateClientProduct } from '../controllers/client_product.controller.js'
 
