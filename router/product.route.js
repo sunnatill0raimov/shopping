@@ -10,6 +10,7 @@ const productRoutes = express.Router()
 
 //! Client routes
 productRoutes.get('/', getProduct)
+productRoutes.get('/:id', getProduct)
 productRoutes.post('/', createProduct)
 productRoutes.delete('/:id', deleteProduct)
 productRoutes.put('/:id', updateProduct)

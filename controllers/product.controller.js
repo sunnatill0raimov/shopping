@@ -6,6 +6,22 @@ export const getProduct = async (req, res) => {
 	res.json(result.rows)
 }
 
+export const getSingleProduct = async (req, res) => {
+	try {
+		const {id} = req.params
+		const result = await pool.query('SELECT * FROM products WHERE id = $1', [id])
+		if (result.rows.length === 0) {
+			return res.status(404).json({
+				message: `${id} id li product topilmadi`,
+			})
+		}
+		res.json(result.rows[0])
+	} catch (error) {
+		console.log('Error:', error)
+		res.status(500).json({ message: error.message })
+	}
+}
+
 //! create product
 export const createProduct = async (req, res) => {
 	try {
