@@ -1,6 +1,8 @@
 const categorySection = DB_URL => {
 	const categoryContainer = document.getElementById('categoryContainer')
 
+	if (!categoryContainer) return
+
 	const fetchCategory = async () => {
 		const res = await fetch(`${DB_URL}/category`)
 		const categories = await res.json()

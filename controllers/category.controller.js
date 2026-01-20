@@ -49,8 +49,8 @@ export const updateCategory = async (req, res) => {
 		const { category_type } = req.body
 
 		const clientProduct = await pool.query(
-			'UPDATE category SET category = $1 WHERE id = $4 RETURNING *;',
-			[date, client_id, product_id, id],
+			'UPDATE category SET category_type = $1 WHERE id = $2 RETURNING *;',
+			[category_type, id],
 		)
 
 		res.status(201).json({

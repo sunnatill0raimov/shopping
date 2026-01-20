@@ -1,5 +1,8 @@
 const clientSection = (DB_URL) => {
 	const clientContainer = document.getElementById('clientContainer')
+
+	if (!clientContainer) return
+
 	const fetchClient = async () => {
 		const res = await fetch(`${DB_URL}/client`)
 		const clients = await res.json()

@@ -2,6 +2,8 @@ const productSection = DB_URL => {
 	const productContainer = document.getElementById('productContainer')
 	const productForm = document.getElementById('productForm')
 
+	if (!productContainer) return
+
 	const fetchProduct = async () => {
 		const res = await fetch(`${DB_URL}/product`)
 		const products = await res.json()
@@ -23,13 +25,28 @@ const productSection = DB_URL => {
 
               <div class="card-buttons">
                 <button class="edit-btn">Edit</button> 
-					      <button class="delete-btn">Delete</button>
+					      <button class="delete-btn" id="deleteBtn">Delete</button>
               </div>
           </div>					
-				`
+				`;
+				const deleteBtn = document.getElementById('deleteBtn')
+				deleteBtn.addEventListener('click', () => deleteProduct(product.id))
 		})
 	}
-
 }
 
 export default productSection
+
+
+	const deleteProduct = async (id) => {
+		console.log(id)
+		// const res = await fetch(`${DB_URL}/product/${id}`, {
+		// 	method: 'DELETE',
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// })
+		// const data = await res.json()
+		// console.log(data)
+		// location.reload()
+	}
