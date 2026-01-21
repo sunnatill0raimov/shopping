@@ -14,8 +14,8 @@ export const getclient= async (req, res) => {
 
 export const getSingleclient= async (req, res) => {
   try {
-    const {id} = req.params
-    const result = await pool.query(`SELECT * FROM client WHERE client_id=$1`, [id])
+    const id = Number(req.params.id);
+    const result = await pool.query(`SELECT * FROM client WHERE client_id = $1`, [id])
     res.send(result.rows[0])
   } catch (error) {
     console.log(error)
