@@ -14,11 +14,11 @@ export const getSingleCategory = async (req, res) => {
 	try {
 		const id = Number(req.params.id)
 		const product = await pool.query(
-			'SELECT * FROM product WHERE id = $1',
+			'SELECT * FROM category WHERE id = $1',
 			[id],
 		)
 		if (product.rows.length === 0) {
-			return res.status(404).json({ message: 'Product not found' })
+			return res.status(404).json({ message: 'Category not found' })
 		}
 		res.status(200).json(product.rows[0])
 	} catch (error) {
