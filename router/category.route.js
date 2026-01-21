@@ -1,9 +1,17 @@
 import express from 'express'
-import { createCategory, deleteCategory, getAllCategory, updateCategory } from '../controllers/category.controller.js'
+import {
+	createCategory,
+	deleteCategory,
+	getAllCategory,
+	getSingleCategory,
+	updateCategory,
+} from '../controllers/category.controller.js'
 
 const categoryRouter = express.Router()
 
 categoryRouter.get('/', getAllCategory)
+
+categoryRouter.get('/:id', getSingleCategory)
 
 categoryRouter.post('/', createCategory)
 

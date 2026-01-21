@@ -10,6 +10,23 @@ export const getAllCategory = async (req, res) => {
 	}
 }
 
+export const getSingleCategory = async (req, res) => {
+	try {
+		const { id } = req.params
+		const product = await pool.query(
+			'SELECT * FROM product WHERE id = $1',
+			[id],
+		)
+		if (product.rows.length === 0) {
+			return res.status(404).json({ message: 'Product not found' })
+		}
+		res.status(200).json(product.rows[0])
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ message: error.message })
+	}
+}
+
 export const createCategory = async (req, res) => {
 	try {
 		const { category_type } = req.body

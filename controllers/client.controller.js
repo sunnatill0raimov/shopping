@@ -12,6 +12,17 @@ export const getclient= async (req, res) => {
   }
 }
 
+export const getSingleclient= async (req, res) => {
+  try {
+    const {id} = req.params
+    const result = await pool.query(`SELECT * FROM client WHERE client_id=$1`, [id])
+    res.send(result.rows[0])
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
 export const postsclient = async (req, res) => {
   try {
     const newclient = req.body;
