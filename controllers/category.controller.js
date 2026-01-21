@@ -12,7 +12,7 @@ export const getAllCategory = async (req, res) => {
 
 export const getSingleCategory = async (req, res) => {
 	try {
-		const { id } = req.params
+		const id = Number(req.params.id)
 		const product = await pool.query(
 			'SELECT * FROM product WHERE id = $1',
 			[id],
